@@ -48,9 +48,16 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'debug_toolbar',
+    'haystack',
 )
+
+HAYSTACK_SITECONF = 'src.search_sites'
 
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
     'INTERCEPT_REDIRECTS': False,
 }
+
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = 'whoosh_index'
+
