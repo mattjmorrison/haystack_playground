@@ -17,3 +17,4 @@ develop-eggs/*
 parts/*
 eggs/*
 downloads/*
+whoosh_index/*

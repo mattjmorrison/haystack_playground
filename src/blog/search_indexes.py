@@ -1,14 +1,17 @@
-import datetime
-from haystack.indexes import *
+from haystack import indexes
 from haystack import site
-from blog.models import Blog
+from blog.models import Blog, Tweet
 
-class BlogIndex(SearchIndex):
-    text = CharField(document=True, use_template=True)
-    pub_date = DateTimeField(model_attr='pub_date')
-
-    def get_queryset(self):
-        """Used when the entire index for model is updated."""
-        return Blog.objects.filter(pub_date__lte=datetime.datetime.now())
+class BlogIndex(indexes.SearchIndex):
+    text = indexes.CharField(document=True, use_template=True)
+    pub_date = indexes.DateField(model_attr='pub_date')
+    user = indexes.CharField(model_attr='user')
 
 site.register(Blog, BlogIndex)
+
+class TweetIndex(indexes.SearchIndex):
+    text = indexes.CharField(document=True, use_template=True)
+    tweet = indexes.CharField(model_attr='tweet')
+    user = indexes.CharField(model_attr='user')
+
+site.register(Tweet, TweetIndex)

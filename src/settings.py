@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'debug_toolbar',
     'haystack',
+    'blog',
 )
 
 HAYSTACK_SITECONF = 'src.search_sites'
