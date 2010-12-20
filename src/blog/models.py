@@ -5,7 +5,7 @@ class Blog(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(max_length=50)
     content = models.TextField()
-    pub_date = models.DateField()
+    pub_date = models.DateField(auto_now=True)
 
     def __unicode__(self):
         return self.title

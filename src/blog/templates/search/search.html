@@ -1,3 +1,4 @@
+{% load tags %}
 <html>
 
 <body>
@@ -21,13 +22,22 @@
     {% if query %}
         <h3>Results</h3>
 
-        {% for result in page.object_list %}
-            <p>
-                <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
-            </p>
-        {% empty %}
-            <p>No results found.</p>
-        {% endfor %}
+        <h4>Blog Matches</h4>
+        {% get_model_class_matches page.object_list Blog as blogs %}
+        <ul>
+            {% for result in blogs %}
+                <li><a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></li>
+            {% endfor %}
+        </ul>
+
+        {% get_model_class_matches page.object_list Tweet as tweets %}
+
+        <h4>Tweet Matches</h4>
+        <ul>
+            {% for result in tweets %}
+                <li><a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></li>
+            {% endfor %}
+        </ul>
 
         {% if page.has_previous or page.has_next %}
             <div>
